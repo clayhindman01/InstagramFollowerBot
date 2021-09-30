@@ -1,5 +1,7 @@
 from selenium import webdriver;
 from time import sleep;
+
+# Will need to create a secrets.py file and save your instagram username and password in variables.
 from secrets import username, password;
 
 class FollowerBot:
@@ -36,6 +38,7 @@ class FollowerBot:
         not_following_back = [user for user in following if user not in followers]
         print(not_following_back)
 
+    # Get the names of users you are following.
     def _get_names_following(self):
         sleep(1)
         scroll_box = self.driver.find_element_by_xpath("/html/body/div[6]/div/div/div[3]")
@@ -52,6 +55,8 @@ class FollowerBot:
         self.driver.find_element_by_xpath("/html/body/div[6]/div/div/div[1]/div/div[2]/button").click()
         return following
 
+    # Get names of users following you.
+    # Getting names of followers and following had to be split into 2 functions becuase the scrollbar had a different xpath so it wouldn't work for both.
     def _get_names_followers(self):
         sleep(1)
         scroll_box = self.driver.find_element_by_xpath("/html/body/div[6]/div/div/div[2]")
